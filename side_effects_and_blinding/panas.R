@@ -1,5 +1,4 @@
 library(brms)
-source("../bayes/format.R")
 source("plotting.R")
 
 data <- read.csv("../data/panas.csv")

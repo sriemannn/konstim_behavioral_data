@@ -1,5 +1,4 @@
 library(brms)
-source("../bayes/format.R")
 source("plotting.R")
 
 side_effects_data <- read.csv("../data/side_effects.csv")

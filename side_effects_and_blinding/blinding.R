@@ -1,9 +1,8 @@
 library(brms)
-source("../bayes/format.R")
 source("plotting.R")
 
 
-data_blinding <- read.csv("../data/blinding.csv")
+data_blinding <- read.csv("../data_blinding.csv")
 
 m_blinding <- brm(
     formula = bf(blinding ~ type),
@@ -19,7 +18,7 @@ m_blinding <- brm(
 pp_check(
     m_blinding,
     type = "bars_grouped",
-    group = "site",
+    group = "type",
     ndraws = 1e3
 )
 
