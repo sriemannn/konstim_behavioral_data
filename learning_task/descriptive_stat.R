@@ -1,7 +1,7 @@
 library(tidyverse)
 source("format_tables.R")
 
-d <- read.csv("../data/learning_data.csv")
+d <- read.csv("../data.csv")
 
 acc <- d %>%
        count(sbj, task, site, stim_time, hit) %>%

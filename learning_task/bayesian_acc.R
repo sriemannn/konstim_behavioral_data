@@ -5,7 +5,7 @@ library(tidybayes)
 source("format_tables.R")
 source("formatting_results.R")
 
-acc_data <- read.csv("data.csv")
+acc_data <- read.csv("../data.csv")
 
 # prior definition
 
@@ -70,7 +70,7 @@ m_acc <- brm(
     ),
     data = acc_data,
     family = bernoulli(),
-    file = "fits/_m_acc_8000",
+    file = "fits/m_acc",
     prior = m_acc_prior,
     sample_prior = "yes",
     cores = 8,
@@ -181,3 +181,19 @@ h_tests_slope_names <- c(
 
 slope_test <- hypotheses_plot(h_tests_slope, h_tests_slope_names)
 slope_test
+
+# conditional effects - Figure 7
+
+conds <- make_conditions(
+    m_acc,
+    vars = c("stim_time")
+)
+
+conds$cond__ <- gsub("stim_time =", "Stimulation time:", conds$cond__)
+
+cond_effects_plot <- conditional_effects(
+    m_acc,
+    effects = c("task:site"),
+    conditions = conds,
+    alpha = 0.5,
+)
